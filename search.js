@@ -63,7 +63,7 @@ var dataArr = function() {
   }
 }
 
-dataArr();
+//dataArr();
 //End
 
 //Search string.
@@ -76,26 +76,58 @@ var searchString = function() {
   console.log('Word rhetoric occurs at ' + result);
 }
 
-searchString();
-//Sorting
-//Bubble Sorted
-function swap(arr, index1, index2) {
-  var temp = arr[index1];
-  arr[index1] = arr[index2];
-  arr[index2] = temp;
+//searchString();
+
+//Linked List
+var Node = function(element) {
+  this.element = element;
+  this.next = null;
 }
 
-function bubbleSort() {
-  var dataStore = [1, 0, 3, 3, 5, 4, 5, 0, 6, 7];
-  var numElements = dataStore.length;
-  var temp;
-  for (var outer = numElements; outer >= 2; --outer) {
-    for (var inner = 0; inner <= outer - 1; ++inner) {
-      if (dataStore[inner] > dataStore[inner + 1]) {
-        swap(dataStore, inner, inner + 1);
-      }
+var LList = function() {
+  this.head = new Node('head');
+  this.find = find;
+  this.insert = insert;
+  //this.remove = remove;
+  this.display = display;
+}
+var find = function(item) {
+  if (item != undefined) {
+    var currNode = this.head;
+    while (currNode.element != item) {
+      currNode = currNode.next;
     }
-    console.log(dataStore);
+  }
+  return currNode;
+}
+var insert = function(insertElement, item) {
+  var newNode = new Node(insertElement);
+  var current = this.find(item);
+  newNode.next = current.next;
+  current.next = newNode;
+}
+var display = function() {
+    var currNode = this.head;
+    while (!(currNode.next == null)) {
+      console.log(currNode.next.element);
+      currNode.next;
+    }
+  }
+  // var x = new LList();
+  // x.insert('vijay','head');
+  // x.insert('Aarav','vijay');
+  // x.display();
+
+//Get the first non repeated the char in a string in single pass
+var nr = function() {
+  var s = 'GeeksforGeeks';
+  var ss = s.split('');
+  for (var i = 0; i <= ss.length - 2; i++) {
+    var g = i+1;
+    var sss = s.substring(g);
+    var d = sss.indexOf(ss[i]);
+    if (d == -1)
+      return ss[i];
   }
 }
-bubbleSort();
+console.log(nr());
